@@ -54,7 +54,7 @@ const SplitStatCard: React.FC<SplitStatCardProps> = ({ title, items, variant, cl
       <CardContent className="space-y-6 pt-0">
         {variant === 'text' && (items as TextItem[]).map((item, index) => (
           <React.Fragment key={item.id}>
-            {index > 0 && <Separator className="bg-border my-6" />}\
+            {index > 0 && <Separator className="bg-border" />}
             <div>
               <p className="text-muted-foreground mb-2 text-sm">{item.title}</p>
               <div className="flex justify-between items-start">
