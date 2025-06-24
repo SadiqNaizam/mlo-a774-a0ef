@@ -7,44 +7,39 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ className }) => {
-  const [currentTime, setCurrentTime] = React.useState<string>('');
+    const [currentTime, setCurrentTime] = React.useState<string>('');
 
-  React.useEffect(() => {
-    const updateTime = () => {
-      // Format time as HH:mm (e.g., 09:24)
-      setCurrentTime(
-        new Date().toLocaleTimeString('en-GB', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        }),
-      );
-    };
+    React.useEffect(() => {
+        const updateTime = () => {
+            setCurrentTime(new Date().toLocaleTimeString('en-GB', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            }));
+        };
+        updateTime();
+        const intervalId = setInterval(updateTime, 60000); // Update every minute
+        return () => clearInterval(intervalId);
+    }, []);
 
-    updateTime(); // Set initial time
-    const intervalId = setInterval(updateTime, 60000); // Update every minute
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, []);
-
-  return (
-    <footer className={cn('w-full text-sm text-muted-foreground', className)}>
-      <div className="flex items-center justify-between py-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-success/20">
-            <Presentation className="h-5 w-5 text-success" />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-card-foreground">Sales YTD</span>
-            <span>Powered by Geckoboard</span>
-          </div>
-        </div>
-        <div className="font-mono text-base text-card-foreground">
-          {currentTime}
-        </div>
-      </div>
-    </footer>
-  );
+    return (
+        <footer className={cn("w-full text-muted-foreground text-sm py-4", className)}>
+            <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                    <div className="bg-success/20 p-1.5 rounded-md flex items-center justify-center">
+                      <Presentation className="h-5 w-5 text-success" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="font-bold text-card-foreground">Sales YTD</span>
+                        <span className="text-muted-foreground">Powered by Geckoboard</span>
+                    </div>
+                </div>
+                <div className="font-mono text-base text-card-foreground">
+                    {currentTime || '09:24'}
+                </div>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;
