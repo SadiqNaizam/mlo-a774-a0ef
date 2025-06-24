@@ -76,11 +76,11 @@ const oppsData: TextItem[] = [
 const IndexPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 lg:p-8">
-      {/* \
-        This is the main dashboard layout, implemented as a CSS Grid.\
-        It uses a 3-column layout on large screens. The `ChartCard` components\
-        span 2 columns, while the `SplitStatCard` components occupy the third column,\
-        stacking vertically. The `FooterInfo` spans all 3 columns at the bottom.\
+      {/*
+        This is the main dashboard layout, implemented as a CSS Grid.
+        It uses a 3-column layout on large screens. The `ChartCard` components
+        span 2 columns, while the `SplitStatCard` components occupy the third column,
+        stacking vertically. The `Footer` spans all 3 columns at the bottom.
       */}
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <ChartCard
@@ -97,11 +97,11 @@ const IndexPage: React.FC = () => {
           items={byBrandData}
         />
 
-        {/* \
-          The 'Orders' card is represented by a ChartCard. While the design image\
-          shows slightly different data points (like comparison trends), using the\
-          existing ChartCard component is the best fit given the available components.\
-          It correctly displays the main value, subtitle, and the year-over-year chart.\
+        {/*
+          The 'Orders' card is represented by a ChartCard. While the design image
+          shows slightly different data points (like comparison trends), using the
+          existing ChartCard component is the best fit given the available components.
+          It correctly displays the main value, subtitle, and the year-over-year chart.
         */}
         <ChartCard
           title="Orders"
