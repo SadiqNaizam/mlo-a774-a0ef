@@ -1,30 +1,7 @@
 import React from 'react';
 import ChartCard from '@/components/Dashboard/ChartCard';
-import SplitStatCard from '@/components/Dashboard/SplitStatCard';
-import FooterInfo from '@/components/Dashboard/FooterInfo';
-
-// Define types locally as they are not exported from the components.
-// This ensures type safety for the data props.
-interface Comparison {
-  value: string;
-  trend: 'up' | 'down' as const;
-}
-
-interface TextItem {
-  id: string;
-  title: string;
-  count: string;
-  value?: string;
-  countComparison?: Comparison;
-  valueComparison?: Comparison;
-}
-
-interface BarItem {
-  id: string;
-  label: string;
-  value: string;
-  percentage: number;
-}
+import SplitStatCard, { type BarItem, type TextItem } from '@/components/Dashboard/SplitStatCard';
+import Footer from '@/components/layout/Footer';
 
 // Data for the "Invoiced" ChartCard. 
 const invoicedChartMonthlyData = [
@@ -99,11 +76,11 @@ const oppsData: TextItem[] = [
 const IndexPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 lg:p-8">
-      {/* 
-        This is the main dashboard layout, implemented as a CSS Grid.
-        It uses a 3-column layout on large screens. The `ChartCard` components
-        span 2 columns, while the `SplitStatCard` components occupy the third column,
-        stacking vertically. The `FooterInfo` spans all 3 columns at the bottom.
+      {/* \
+        This is the main dashboard layout, implemented as a CSS Grid.\
+        It uses a 3-column layout on large screens. The `ChartCard` components\
+        span 2 columns, while the `SplitStatCard` components occupy the third column,\
+        stacking vertically. The `FooterInfo` spans all 3 columns at the bottom.\
       */}
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <ChartCard
@@ -120,11 +97,11 @@ const IndexPage: React.FC = () => {
           items={byBrandData}
         />
 
-        {/* 
-          The 'Orders' card is represented by a ChartCard. While the design image
-          shows slightly different data points (like comparison trends), using the
-          existing ChartCard component is the best fit given the available components.
-          It correctly displays the main value, subtitle, and the year-over-year chart.
+        {/* \
+          The 'Orders' card is represented by a ChartCard. While the design image\
+          shows slightly different data points (like comparison trends), using the\
+          existing ChartCard component is the best fit given the available components.\
+          It correctly displays the main value, subtitle, and the year-over-year chart.\
         */}
         <ChartCard
           title="Orders"
@@ -139,7 +116,7 @@ const IndexPage: React.FC = () => {
           items={oppsData}
         />
 
-        <FooterInfo />
+        <Footer className="col-span-3" />
       </main>
     </div>
   );
