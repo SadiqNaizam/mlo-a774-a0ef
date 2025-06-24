@@ -4,12 +4,12 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 
-interface Comparison {
+export interface Comparison {
   value: string;
   trend: 'up' | 'down' as const;
 }
 
-interface TextItem {
+export interface TextItem {
   id: string;
   title: string;
   count: string;
@@ -18,14 +18,14 @@ interface TextItem {
   valueComparison?: Comparison;
 }
 
-interface BarItem {
+export interface BarItem {
   id: string;
   label: string;
   value: string;
   percentage: number;
 }
 
-type StatItem = TextItem | BarItem;
+export type StatItem = TextItem | BarItem;
 
 interface SplitStatCardProps {
   title: string;
@@ -54,7 +54,7 @@ const SplitStatCard: React.FC<SplitStatCardProps> = ({ title, items, variant, cl
       <CardContent className="space-y-6 pt-0">
         {variant === 'text' && (items as TextItem[]).map((item, index) => (
           <React.Fragment key={item.id}>
-            {index > 0 && <Separator className="bg-border my-6" />}
+            {index > 0 && <Separator className="bg-border my-6" />}\
             <div>
               <p className="text-muted-foreground mb-2 text-sm">{item.title}</p>
               <div className="flex justify-between items-start">
